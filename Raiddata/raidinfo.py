@@ -75,7 +75,7 @@ def createEmbeddedMessage(raidinfo, raidData):
 
   raidUrl = "https://wowaudit.com/eu/tarren-mill/noname/main/raids/{0}".format( raidData["id"])
 
-  message= discord.Embed(description="Roster for {0} raid on {1}".format(raidData["instance"], raidData["date"]), colour= discord.Color.green())
+  message= discord.Embed(description="Roster for _**{0}**_ raid on _**{1}**_".format(raidData["instance"], raidData["date"]), colour= discord.Color.green())
   message.set_author(name="Raid Roster")
   message.add_field(name="\u200b", value="\u200b")
   message.add_field(name=":shield: Tanks", value=roster["tanks"], inline=False)
