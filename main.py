@@ -20,5 +20,10 @@ async def on_message(message):
   await checkCommandFor(message, client)
 
 
+@client.event
+async def on_message(message):
+  await checkCommandFor(message, client)
+
+
 keep_alive()
 client.run(os.getenv('TOKEN'))
