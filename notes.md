@@ -1,0 +1,1 @@
+https://us.battle.net/oauth/authorize?client_id=7af803ee7e324d18be2f1c98685988c4&redirect_uri=https%3A%2F%2Fwowaudit.com%2Fauth%2Fbnet%2Fcallback&response_type=code&scope=wow.profile&state=d3afd90f65c59e7933d2dbb4780d3bdb08338b129cea201b&ST=US-d8e547dcba1f9632a63fd237478d71e6-104620187
