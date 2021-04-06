@@ -13,6 +13,7 @@ client = discord.Client(intents = intents)
 @client.event
 async def on_ready():
   print('logged in as user {0}'.format(client.user))
+  return await client.change_presence(activity=discord.Activity(type=1, name='World of Warcraft'))
 
 @client.event
 async def on_member_join(member):
