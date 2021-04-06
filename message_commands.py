@@ -6,5 +6,5 @@ async def checkCommandFor(msg, client):
 
 
 async def returnRoster(msg, client):
-  response = Raiddata.raidinfo.getRoster()
-  await msg.channel.send(response)
+  embed = Raiddata.raidinfo.getRoster()
+  await msg.channel.send(embed=embed)
