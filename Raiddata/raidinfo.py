@@ -1,7 +1,7 @@
 import os
 import requests
 import discord
-
+import datetime
 
 key= os.getenv('wowAuditKey')
 
@@ -15,7 +15,20 @@ def getRaidData():
   return raids
 
 def getNextRaid():
-  return getRaidData()[0]
+
+  raids = getRaidData()
+  found = False
+  d = datetime.date.today()
+
+  while found == False:
+    print(d.strftime("%Y-%m-%d"))    
+    for raid in raids:
+      if d.strftime("%Y-%m-%d") == raid["date"]:
+        found = True
+        print(raid)
+        return raid
+        break
+    d = d + datetime.timedelta(days=1)
   
 def getRoster():
   raidData = getNextRaidInfo()
