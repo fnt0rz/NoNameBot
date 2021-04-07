@@ -71,6 +71,7 @@ def createRoster(raidlist):
 
 def createEmbeddedMessage(raidinfo, raidData):
   roster = createRoster(raidinfo)
+  print(roster)
   footerNote = "Total sign-ups: {0} · brought to you by Chookity!".format(str(len(raidData["signups"])))
 
   raidUrl = "https://wowaudit.com/eu/tarren-mill/noname/main/raids/{0}".format( raidData["id"])
@@ -78,10 +79,23 @@ def createEmbeddedMessage(raidinfo, raidData):
   message= discord.Embed(description="Roster for _**{0}**_ raid on _**{1}**_".format(raidData["instance"], raidData["date"]), colour= discord.Color.green())
   message.set_author(name="Raid Roster")
   message.add_field(name="\u200b", value="\u200b")
-  message.add_field(name=":shield: Tanks", value=roster["tanks"], inline=False)
-  message.add_field(name=":green_heart: Healers", value=roster["healers"], inline=False)
-  message.add_field(name=":archery: Ranged", value=roster["ranged"], inline=False)
-  message.add_field(name=":crossed_swords: Melee", value=roster["melee"], inline=False)
+
+  if len(roster["tanks"]) > 0:
+    message.add_field(name=":shield: Tanks", value=roster["tanks"], inline=False)
+  else:
+    addNoRaidersField(message, ":shield: Tanks")
+  if len(roster["healers"]) > 0:
+    message.add_field(name=":green_heart: Healers", value=roster["healers"], inline=False)
+  else:
+    addNoRaidersField(message, ":green_heart: Healers")
+  if len(roster["ranged"]) > 0:
+    message.add_field(name=":archery: Ranged", value=roster["ranged"], inline=False)
+  else:
+    addNoRaidersField(message, ":archery: Ranged")
+  if len(roster["melee"]) > 0:
+    message.add_field(name=":crossed_swords: Melee", value=roster["melee"], inline=False)
+  else:
+    addNoRaidersField(message, ":crossed_swords: Melee")
   message.add_field(name="\u200B", value=f"**[Roster]({raidUrl})**")
   message.set_footer(text=footerNote)
   
@@ -89,6 +103,9 @@ def createEmbeddedMessage(raidinfo, raidData):
 
 def formatString(item):
   return ", ".join(item)
+
+def addNoRaidersField(message, icon):
+  message.add_field(name=icon, value="No players yet", inline=False)
 
 
 
