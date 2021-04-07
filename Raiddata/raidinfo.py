@@ -21,11 +21,9 @@ def getNextRaid():
   d = datetime.date.today()
 
   while found == False:
-    print(d.strftime("%Y-%m-%d"))    
     for raid in raids:
       if d.strftime("%Y-%m-%d") == raid["date"]:
         found = True
-        print(raid)
         return raid
         break
     d = d + datetime.timedelta(days=1)
@@ -84,7 +82,6 @@ def createRoster(raidlist):
 
 def createEmbeddedMessage(raidinfo, raidData):
   roster = createRoster(raidinfo)
-  print(roster)
   footerNote = "Total sign-ups: {0} · brought to you by Chookity!".format(str(len(raidData["signups"])))
 
   raidUrl = "https://wowaudit.com/eu/tarren-mill/noname/main/raids/{0}".format( raidData["id"])
