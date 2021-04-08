@@ -111,7 +111,7 @@ def createRosterList(raidinfo):
 def createEmbeddedMessage(raidinfo, raidData):
   raidUrl = "https://wowaudit.com/eu/tarren-mill/noname/main/raids/{0}".format( raidData["id"])
 
-  message= discord.Embed(description=f"Time: {raidData['start_time']} - {raidData['end_time']} **·** difficulty: {raidData['difficulty']}", colour= discord.Color.green())
+  message= discord.Embed(description=f"Time: {raidData['start_time']} - {raidData['end_time']} **·** Difficulty: {raidData['difficulty']}", colour= discord.Color.green())
   message.set_author(name="Roster for {0} raid on {1}".format(raidData["instance"], raidData["date"]))
   message.add_field(name="\u200b", value="\u200b")
 
@@ -124,27 +124,27 @@ def createEmbeddedMessage(raidinfo, raidData):
 
 
   if len(roster["tanks"]) > 0:
-    message.add_field(name=":shield: Tanks", value=roster["tanks"], inline=False)
+    message.add_field(name=":shield: Tanks:", value=roster["tanks"], inline=False)
   else:
-    addNoRaidersField(message, ":shield: Tanks")
+    addNoRaidersField(message, ":shield: Tanks:")
   if len(roster["healers"]) > 0:
-    message.add_field(name=":green_heart: Healers", value=roster["healers"], inline=False)
+    message.add_field(name=":green_heart: Healers:", value=roster["healers"], inline=False)
   else:
-    addNoRaidersField(message, ":green_heart: Healers")
+    addNoRaidersField(message, ":green_heart: Healers:")
   if len(roster["ranged"]) > 0:
     message.add_field(name=":archery: Ranged", value=roster["ranged"], inline=False)
   else:
-    addNoRaidersField(message, ":archery: Ranged")
+    addNoRaidersField(message, ":archery: Ranged:")
   if len(roster["melee"]) > 0:
-    message.add_field(name=":crossed_swords: Melee", value=roster["melee"], inline=False)
+    message.add_field(name=":crossed_swords: Melee:", value=roster["melee"], inline=False)
   else:
-    addNoRaidersField(message, ":crossed_swords: Melee")
+    addNoRaidersField(message, ":crossed_swords: Melee:")
 
   if len(raidinfo) > 1:
     message.add_field(name="\u200B", value="_** More then 1 bosses are selected be sure to check the roster following the link below **_", inline=False)
 
   message.add_field(name="\u200B", value=f"**[Roster]({raidUrl})**", inline=False)
-  message.set_footer(text="brought to you by Chookity!")
+  message.set_footer(text="Brought to you by Chookity!")
   
   return message
 
