@@ -1,23 +1,24 @@
-import discord
-import os
+import discord, os
+from discord.ext import commands
 from webserver import keep_alive
-from message_commands import checkCommandFor
+from Events.eventtimer import addEvents
+
+bot = commands.Bot(command_prefix='$')
+extensions = ['Commands.adminCommands', 'Commands.generalCommands', 'Commands.raidCommands']
+
+if __name__ == '__main__':
+  for ext in extensions:
+    bot.load_extension(ext)
 
 
-intents = discord.Intents.default()
-intents.members = True
-
-client = discord.Client(intents = intents)
-
-
-@client.event
+@bot.event
 async def on_ready():
-  print('logged in as user {0}'.format(client.user))
-  return await client.change_presence(activity=discord.Activity(type=1, name='World of Warcraft'))
+  print('logged in as user {0}'.format(bot.user))
+  await bot.change_presence(activity=discord.Activity(type=1, name='World of Warcraft'))
 
-@client.event
-async def on_message(message):
-  await checkCommandFor(message, client)
+
+def getClient():
+  return bot
 
 keep_alive()
-client.run(os.getenv('TOKEN'))
+bot.run(os.getenv('TOKEN'))
