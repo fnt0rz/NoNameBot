@@ -1,24 +1,37 @@
 import Social.socialinteractions as social
+from discord.ext import commands, tasks
+from Social.channelbase import getSocialTimer
 from time import sleep
-from discord.ext import tasks, commands
 
 
-bot = commands.Bot('!')
+class EventTimers(commands.Cog):
+  delay = 10
 
-@tasks.loop(minutes=10)
-async def socialInteraction():
-  print("adding social...")
-  await social.doRandomEvent(client)
+  def __init__(self, bot):
+    self.bot = bot
+    self.addEvents()
+    self.setDelay()
+    print(self.delay)
+    
 
-@socialInteraction.before_loop
-async def before_SocialInteraction():
-  print("waiting...")
-  sleep(10)
-  print("started...")
+  @tasks.loop(minutes=delay)
+  async def socialInteraction(self):
+    await social.doRandomEvent(self.bot)
 
+  @socialInteraction.before_loop
+  async def before_SocialInteraction(self):
+    await self.bot.wait_until_ready()
+    sleep(self.delay * 60)
 
-async def addEvents(c):
-  global client
-  client = c
-  socialInteraction.start()
+  def addEvents(self):
+    self.socialInteraction.start()
 
+  def setDelay(self):
+    t = getSocialTimer()
+    if not t:
+      return
+    self.delay = t
+    
+
+def setup(bot):
+  bot.add_cog(EventTimers(bot))

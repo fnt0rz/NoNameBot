@@ -1,10 +1,10 @@
 import discord, os
 from discord.ext import commands
 from webserver import keep_alive
-from Events.eventtimer import addEvents
 
 bot = commands.Bot(command_prefix='$')
-extensions = ['Commands.adminCommands', 'Commands.generalCommands', 'Commands.raidCommands']
+
+extensions = ['Commands.adminCommands', 'Commands.generalCommands', 'Commands.raidCommands','Events.eventtimer']
 
 if __name__ == '__main__':
   for ext in extensions:
@@ -21,4 +21,4 @@ def getClient():
   return bot
 
 keep_alive()
-bot.run(os.getenv('TOKEN'))
+bot.run(os.getenv('TOKEN'), bot=True, reconnect=True)

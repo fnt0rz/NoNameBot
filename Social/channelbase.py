@@ -26,6 +26,16 @@ async def getGeneralChannel(msg, bot):
   
   return await msg.channel.send("Hmmmm.")
 
+def getSocialTimerText():
+  return f"Chookity-Chook, { getSocialTimer } is currently set as delay."
+
+def setSocialTimer(minutes):
+  db["socialTimer"] = minutes
+  return f"Chookity-pah, delay is now set to {minutes} minutes."
+
+def getSocialTimer():
+  return db["socialTimer"]
+
 
 
 def setGeneralChannelId(id):
