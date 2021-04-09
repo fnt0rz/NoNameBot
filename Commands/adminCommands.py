@@ -18,7 +18,7 @@ class AdminCommands(commands.Cog):
     result = channelbase.setSocialTimer(delay)
     await ctx.send(result)
 
-  @commands.command(hidde=True)
+  @commands.command(hidden=True)
   async def getDelay(self, ctx):
     result = channelbase.getSocialTimerText()
     await ctx.send(result)
