@@ -21,7 +21,7 @@ async def fireEvent(c, u ,r):
   if r > 92:
     await c.send("$sim Mooncake")
     await c.send("Waiting for api...")
-    sleep(3)
+    sleep(5)
     return await c.send("WHAT! Its over 9000!")
   if r > 90:
     message = await c.send(f"Please help me summon { u.name }!")
