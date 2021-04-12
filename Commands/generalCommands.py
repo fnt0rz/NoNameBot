@@ -10,10 +10,15 @@ class GeneralCommands(commands.Cog):
   async def owners(self, ctx):
     await ctx.send('My owners are Archescent and fnt.')
 
-  @commands.command()
+  @commands.command(description="""
+  Create a voting.
+  Usage: $vote <end date> <"question">(make sure to use quotes) optional: <answer 1> <answer 2> <answer 3>
+  """)
   @commands.guild_only() 
-  async def vote(self, ctx, *args):
-    await voting.createVoteMessage(ctx, *args)
+  async def vote(self, ctx, arg1, arg2, *args):
+    if not (arg1 or arg2):
+      return await voting.returnErrorMessage(ctx)
+    await voting.validateVotingContext(ctx, arg1, arg2, args)
 
 
 def setup(bot):
