@@ -2,7 +2,8 @@ import discord, os
 from discord.ext import commands
 from webserver import keep_alive
 
-bot = commands.Bot(command_prefix='$')
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='$', intents=intents)
 
 extensions = [
     'Commands.adminCommands', 'Commands.generalCommands',
